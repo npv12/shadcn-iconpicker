@@ -1,0 +1,28 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "acme",
+    "homepage": "https://acme.com",
+    "items": [
+        {
+            "name": "icon-picker",
+            "type": "registry:block",
+            "title": "Icon Picker",
+            "description": "An icon picker component with lucide icons.",
+            "files": [
+              {
+                "path": "src/components/ui/iconPicker.tsx",
+                "type": "registry:component"
+              }
+            ],
+            "dependencies": [
+                "lucide-react",
+                "lucide-react/dynamic"
+            ],
+            "registryDependencies": [
+                "button",
+                "input",
+                "popover"
+            ]
+          }
+    ]
+  }

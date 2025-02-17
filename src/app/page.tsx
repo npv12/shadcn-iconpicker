@@ -1,8 +1,26 @@
-import Image from "next/image";
+"use client";
 
+import { IconPicker } from "@/components/ui/iconPicker";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { DynamicIcon, IconName } from "lucide-react/dynamic";
 export default function Home() {
+  const [icon, setIcon] = useState<IconName | null>(null);
+
+  useEffect(() => {
+    console.log(icon);
+  }, [icon]);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <IconPicker onSelect={(icon) => {
+        setIcon(icon as IconName);
+      }}>
+        <Button>
+          {icon && <DynamicIcon name={icon} />}
+        </Button>
+      </IconPicker>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
