@@ -4,36 +4,28 @@ import { useState, useMemo } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import * as LucideIcons from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DynamicIcon, IconName } from 'lucide-react/dynamic';
+import React, { lazy, Suspense } from 'react';
+import { LucideProps } from 'lucide-react';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
-const toSnakeCase = (str: string): string => {
-  const transformations = [
-    [/Icon$/, ''],                       
-    [/([A-Z]+)([A-Z][a-z])/g, '$1-$2'],   
-    [/([a-z])([A-Z])/g, '$1-$2'],        
-    [/([a-zA-Z])(\d+)|(\d+)([a-zA-Z])/g, '$1$3-$2$4'],
-    [/([a-zA-Z])(\d+)/g, '$1-$2'],
-    [/(\d+)([a-zA-Z])/g, '$1-$2'],
-  ] as const;
+interface IconProps extends Omit<LucideProps, 'ref'> {
+  name: keyof typeof dynamicIconImports;
+}
 
-  return transformations.reduce(
-    (result, [pattern, replacement]) => result.replace(pattern, replacement),
-    str
-  ).toLowerCase();
-};
+const Icon = ({ name, ...props }: IconProps) => {
+  const LucideIcon = lazy(dynamicIconImports[name]);
 
-const ICONS = Object.keys(LucideIcons)
-  .filter(name => name.endsWith('Icon'))
-  .map(toSnakeCase)
-  .filter(name => !name.includes('create-lucide') && name !== '');
+  return (
+    <Suspense fallback={<div className="w-6 h-6 bg-gray-100 dark:bg-gray-800 rounded-md " />}>
+      <LucideIcon {...props} />
+    </Suspense>
+  );
+}
 
-const uniqueIcons = [...new Set(ICONS)];
-
-const ICON_BUTTONS = uniqueIcons.map((icon) => ({
-  icon,
-  component: <DynamicIcon name={icon as IconName} className="w-6 h-6" />
+const ICON_BUTTONS = Object.keys(dynamicIconImports).map((icon) => ({
+  icon: icon as keyof typeof dynamicIconImports,
+  component: <Icon name={icon as keyof typeof dynamicIconImports} className="w-6 h-6" />
 }));
 
 export function IconPicker({ 
@@ -42,7 +34,7 @@ export function IconPicker({
   searchable = true,
   searchPlaceholder = "Search for an icon..."
 }: { 
-  onSelect: (icon: IconName) => void,
+  onSelect: (icon: keyof typeof dynamicIconImports) => void,
   children?: React.ReactNode,
   searchable?: boolean,
   searchPlaceholder?: string
@@ -55,6 +47,7 @@ export function IconPicker({
     setOpen(newOpen);
     if (!newOpen) {
       setDisplayCount(32);
+      setSearch("");
     }
   };
 
@@ -109,9 +102,10 @@ export function IconPicker({
                 "flex items-center justify-center"
               )}
               onClick={() => {
-                onSelect(icon as IconName);
-                setDisplayCount(32);
+                onSelect(icon as keyof typeof dynamicIconImports);
                 setOpen(false);
+                setDisplayCount(32);
+                setSearch("");
               }}
             >
               {component}

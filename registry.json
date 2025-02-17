@@ -15,8 +15,7 @@
               }
             ],
             "dependencies": [
-                "lucide-react",
-                "lucide-react/dynamic"
+                "lucide-react"
             ],
             "registryDependencies": [
                 "button",
