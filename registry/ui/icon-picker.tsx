@@ -5,26 +5,29 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { LucideProps } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import dynamic from "next/dynamic";
 
 type IconName = keyof typeof dynamicIconImports;
-
 interface IconProps extends Omit<LucideProps, 'ref'> {
   name: IconName;
 }
 
-const Icon = ({ name, ...props }: IconProps) => {
-  const LucideIcon = lazy(dynamicIconImports[name]);
+const iconComponents = {} as Record<IconName, React.ComponentType<LucideProps>>;
 
-  return (
-    <Suspense fallback={<div className="w-6 h-6 bg-gray-100 dark:bg-gray-800 rounded-md " />}>
-      <LucideIcon {...props} />
-    </Suspense>
-  );
-}
+Object.entries(dynamicIconImports).forEach(([name, importFn]) => {
+  iconComponents[name as IconName] = dynamic(importFn, {
+    loading: () => <div className="w-6 h-6 bg-gray-100 dark:bg-gray-800 rounded-md" />
+  });
+});
+
+const Icon = ({ name, ...props }: IconProps) => {
+  const IconComponent = iconComponents[name];
+  return <IconComponent {...props} />;
+};
 
 const ICON_BUTTONS = Object.keys(dynamicIconImports).map((icon) => ({
   icon: icon as IconName,
@@ -44,12 +47,12 @@ export function IconPicker({
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [displayCount, setDisplayCount] = useState(32);
+  const [displayCount, setDisplayCount] = useState(36);
 
   const handleOpenChange = (newOpen: boolean) => {
     setOpen(newOpen);
     if (!newOpen) {
-      setDisplayCount(32);
+      setDisplayCount(36);
       setSearch("");
     }
   };
@@ -70,8 +73,8 @@ export function IconPicker({
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop - clientHeight < 20) {
-      setDisplayCount(prev => Math.min(prev + 32, filteredIcons.length));
+    if (scrollHeight - scrollTop - clientHeight < 36) {
+      setDisplayCount(prev => Math.min(prev + 36, filteredIcons.length));
     }
   };
 
@@ -108,7 +111,7 @@ export function IconPicker({
                   onClick={() => {
                     onSelect?.(icon);
                     setOpen(false);
-                    setDisplayCount(32);
+                    setDisplayCount(36);
                     setSearch("");
                   }}>
                   {component}
