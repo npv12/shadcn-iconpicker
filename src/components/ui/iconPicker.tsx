@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import React, { lazy, Suspense } from 'react';
 import { LucideProps } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface IconProps extends Omit<LucideProps, 'ref'> {
   name: keyof typeof dynamicIconImports;
@@ -95,21 +96,26 @@ export function IconPicker({
           onScroll={handleScroll}
         >
           {displayedIcons.map(({ icon, component }) => (
-            <button
-              key={icon}
-              className={cn(
-                "p-2 rounded-md border hover:bg-gray-100 dark:hover:bg-gray-800 transition",
-                "flex items-center justify-center"
-              )}
-              onClick={() => {
-                onSelect(icon as keyof typeof dynamicIconImports);
-                setOpen(false);
-                setDisplayCount(32);
-                setSearch("");
-              }}
-            >
-              {component}
-            </button>
+            <TooltipProvider key={icon}>
+              <Tooltip>
+                <TooltipTrigger
+                  className={cn(
+                    "p-2 rounded-md border hover:bg-gray-100 dark:hover:bg-gray-800 transition",
+                    "flex items-center justify-center"
+                  )}
+                  onClick={() => {
+                    onSelect(icon as keyof typeof dynamicIconImports);
+                    setOpen(false);
+                    setDisplayCount(32);
+                    setSearch("");
+                  }}>
+                  {component}
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{icon}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ))}
           {filteredIcons.length === 0 && (
             <div className="text-center text-gray-500 col-span-4">

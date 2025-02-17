@@ -19,6 +19,7 @@ export default function Home() {
       }}>
         <Button>
           {icon && <DynamicIcon name={icon} />}
+          {icon ? icon : "Pick Icon"}
         </Button>
       </IconPicker>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">

@@ -20,7 +20,8 @@
             "registryDependencies": [
                 "button",
                 "input",
-                "popover"
+                "popover",
+                "tooltip"
             ]
           }
     ]
