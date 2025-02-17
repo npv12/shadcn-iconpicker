@@ -74,7 +74,7 @@ export function IconPicker({
   };
 
   return (
-    <Popover open={open} onOpenChange={handleOpenChange}>
+    <Popover open={open} onOpenChange={handleOpenChange} modal={true}>
       <PopoverTrigger asChild>
         {children || (
           <Button variant="outline">
@@ -91,7 +91,7 @@ export function IconPicker({
             className="mb-2"
           />
         )}
-        <div 
+        <div
           className="grid grid-cols-4 gap-2 max-h-60 overflow-auto"
           onScroll={handleScroll}
         >
