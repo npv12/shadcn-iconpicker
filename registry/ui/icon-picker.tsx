@@ -10,8 +10,10 @@ import { LucideProps } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
+type IconName = keyof typeof dynamicIconImports;
+
 interface IconProps extends Omit<LucideProps, 'ref'> {
-  name: keyof typeof dynamicIconImports;
+  name: IconName;
 }
 
 const Icon = ({ name, ...props }: IconProps) => {
@@ -25,8 +27,8 @@ const Icon = ({ name, ...props }: IconProps) => {
 }
 
 const ICON_BUTTONS = Object.keys(dynamicIconImports).map((icon) => ({
-  icon: icon as keyof typeof dynamicIconImports,
-  component: <Icon name={icon as keyof typeof dynamicIconImports} className="w-6 h-6" />
+  icon: icon as IconName,
+  component: <Icon name={icon as IconName} className="w-6 h-6" />
 }));
 
 export function IconPicker({ 
@@ -35,7 +37,7 @@ export function IconPicker({
   searchable = true,
   searchPlaceholder = "Search for an icon..."
 }: { 
-  onSelect: (icon: keyof typeof dynamicIconImports) => void,
+  onSelect?: (icon: IconName) => void,
   children?: React.ReactNode,
   searchable?: boolean,
   searchPlaceholder?: string
@@ -104,7 +106,7 @@ export function IconPicker({
                     "flex items-center justify-center"
                   )}
                   onClick={() => {
-                    onSelect(icon as keyof typeof dynamicIconImports);
+                    onSelect?.(icon);
                     setOpen(false);
                     setDisplayCount(32);
                     setSearch("");

@@ -5,13 +5,15 @@
     "items": [
         {
             "name": "icon-picker",
-            "type": "registry:block",
+            "type": "registry:ui",
             "title": "Icon Picker",
             "description": "An icon picker component with lucide icons.",
+            "author": "alan-crts",
             "files": [
               {
-                "path": "src/components/ui/iconPicker.tsx",
-                "type": "registry:component"
+                "path": "registry/ui/icon-picker.tsx",
+                "type": "registry:component",
+                "target": "components/ui/icon-picker.tsx"
               }
             ],
             "dependencies": [
