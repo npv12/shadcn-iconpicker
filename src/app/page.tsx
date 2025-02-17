@@ -24,7 +24,7 @@ export default function Home() {
         preview={iconPickerPreview}
         code={iconPickerCode}
         language="tsx"
-        v0Url="https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json"
+        v0Url={process.env.NEXT_PUBLIC_REGISTRY_URL}
       />
       <Separator />
       <div className="flex flex-col gap-4">
@@ -36,10 +36,10 @@ export default function Home() {
         <ScriptCopy 
           language="tsx"
           commandMap={{
-            pnpm: "pnpm dlx shadcn@latest add https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json",
-            npm: "npx shadcn@latest add https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json",
-            yarn: "npx shadcn@latest add https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json",
-            bun: "bunx --bun shadcn@latest add https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json",
+            pnpm: `pnpm dlx shadcn@latest add ${process.env.NEXT_PUBLIC_REGISTRY_URL}`,
+            npm: `npx shadcn@latest add ${process.env.NEXT_PUBLIC_REGISTRY_URL}`,
+            yarn: `npx shadcn@latest add ${process.env.NEXT_PUBLIC_REGISTRY_URL}`,
+            bun: `bunx --bun shadcn@latest add ${process.env.NEXT_PUBLIC_REGISTRY_URL}`,
           }}
         />
       </div>

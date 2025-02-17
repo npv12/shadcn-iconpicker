@@ -51,7 +51,7 @@ export function IconPickerExample() {
       preview={iconPickerPreview}
       code={iconPickerCode}
       language="tsx"
-      v0Url="https://alan-crts.github.io/shadcn-iconpicker/icon-picker.json"
+      v0Url={process.env.NEXT_PUBLIC_REGISTRY_URL}
     />
   );
 }
