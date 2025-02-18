@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,19 +14,20 @@ export type IconName = keyof typeof icons;
 
 const ICON_BUTTONS = Object.keys(icons).map((icon) => ({
   icon: icon as IconName,
-  component: <Icon name={icon as IconName} className="w-6 h-6" />
 }));
 
 export function IconPicker({
   onSelect,
   children,
   searchable = true,
-  searchPlaceholder = "Search for an icon..."
+  searchPlaceholder = "Search for an icon...",
+  iconsList = ICON_BUTTONS
 }: { 
   onSelect?: (icon: IconName) => void,
   children?: React.ReactNode,
   searchable?: boolean,
-  searchPlaceholder?: string
+  searchPlaceholder?: string,
+  iconsList?: { icon: IconName, alias?: string[] }[]
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -42,12 +43,17 @@ export function IconPicker({
 
   const filteredIcons = useMemo(() => 
     search.trim() === "" 
-      ? ICON_BUTTONS 
-      : ICON_BUTTONS.filter(({ icon }) =>
-          icon.toLowerCase().includes(search.toLowerCase())
+      ? iconsList 
+      : iconsList.filter(({ icon, alias }) =>
+          icon.toLowerCase().includes(search.toLowerCase().trim()) ||
+          (alias || []).some(alias => alias.toLowerCase().includes(search.toLowerCase().trim()))
         ),
-    [search]
+    [search, iconsList]
   );
+
+  useEffect(() => {
+    setDisplayCount(36);
+  }, [search]);
 
   const displayedIcons = useMemo(() => 
     filteredIcons.slice(0, displayCount),
@@ -83,7 +89,7 @@ export function IconPicker({
           className="grid grid-cols-4 gap-2 max-h-60 overflow-auto"
           onScroll={handleScroll}
         >
-          {displayedIcons.map(({ icon, component }) => (
+          {displayedIcons.map(({ icon }) => (
             <TooltipProvider key={icon}>
               <Tooltip>
                 <TooltipTrigger
@@ -97,7 +103,7 @@ export function IconPicker({
                     setDisplayCount(36);
                     setSearch("");
                   }}>
-                  {component}
+                  <Icon name={icon} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>{icon}</p>

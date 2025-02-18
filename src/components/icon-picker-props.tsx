@@ -10,7 +10,7 @@ import {
   const props = [
     {
       prop: "onSelect",
-      type: "function (icon: string) => void",
+      type: "function (icon: IconName) => void",
       default: "-",
       description: "The function to call when the icon is selected.",
     },
@@ -19,6 +19,12 @@ import {
       type: "ReactNode",
       default: "-",
       description: "The trigger element to open the icon picker.",
+    },
+    {
+      prop: "iconsList",
+      type: `array of objects { icon: IconName, alias?: string[] }[]`,
+      default: "all lucide icons",
+      description: "The list of icons to display in the icon picker.",
     },
     {
       prop: "searchable",

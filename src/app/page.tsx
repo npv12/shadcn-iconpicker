@@ -1,5 +1,5 @@
-import { IconPickerExample } from "@/components/Icon-picker-example";
-import { IconsPickerProps } from "@/components/icons-picker-props";
+import { IconPickerExample } from "@/components/icon-picker-example";
+import { IconsPickerProps } from "@/components/icon-picker-props";
 import { PreviewCode } from "@/components/preview-code";
 import { ScriptCopy } from "@/components/script-copy";
 import { IconPicker } from "../../registry/ui/icon-picker";
