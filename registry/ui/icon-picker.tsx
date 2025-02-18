@@ -6,35 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import React from 'react';
-import { LucideProps } from 'lucide-react';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
+import { icons } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import dynamic from "next/dynamic";
+import { Icon } from "./icon";
 
-type IconName = keyof typeof dynamicIconImports;
-interface IconProps extends Omit<LucideProps, 'ref'> {
-  name: IconName;
-}
+export type IconName = keyof typeof icons;
 
-const iconComponents = {} as Record<IconName, React.ComponentType<LucideProps>>;
-
-Object.entries(dynamicIconImports).forEach(([name, importFn]) => {
-  iconComponents[name as IconName] = dynamic(importFn, {
-    loading: () => <div className="w-6 h-6 bg-gray-100 dark:bg-gray-800 rounded-md" />
-  });
-});
-
-const Icon = ({ name, ...props }: IconProps) => {
-  const IconComponent = iconComponents[name];
-  return <IconComponent {...props} />;
-};
-
-const ICON_BUTTONS = Object.keys(dynamicIconImports).map((icon) => ({
+const ICON_BUTTONS = Object.keys(icons).map((icon) => ({
   icon: icon as IconName,
   component: <Icon name={icon as IconName} className="w-6 h-6" />
 }));
 
-export function IconPicker({ 
+export function IconPicker({
   onSelect,
   children,
   searchable = true,
@@ -105,7 +88,7 @@ export function IconPicker({
               <Tooltip>
                 <TooltipTrigger
                   className={cn(
-                    "p-2 rounded-md border hover:bg-gray-100 dark:hover:bg-gray-800 transition",
+                    "p-2 rounded-md border hover:bg-foreground/10 transition",
                     "flex items-center justify-center"
                   )}
                   onClick={() => {

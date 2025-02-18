@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { IconPicker } from "../../registry/ui/icon-picker";
+import { IconName, IconPicker } from "../../registry/ui/icon-picker";
+import { Icon } from "../../registry/ui/icon";
 import { Button } from "@/components/ui/button";
-import { DynamicIcon, IconName } from "lucide-react/dynamic";
 import { PreviewCode } from "@/components/preview-code";
 
 export function IconPickerExample() {
@@ -13,7 +13,7 @@ export function IconPickerExample() {
       <Button>
         {icon ? (
           <>
-            <DynamicIcon name={icon} /> {icon}
+            <Icon name={icon} /> {icon}
           </>
         ) : (
           "Pick Icon"
@@ -25,9 +25,9 @@ export function IconPickerExample() {
   const iconPickerCode = `"use client";
 
 import { useState } from "react";
-import { IconPicker } from "@/components/ui/icon-picker";
+import { IconName, IconPicker } from "@/components/ui/icon-picker";
+import { Icon } from "@/components/ui/icon";
 import { Button } from "@/components/ui/button";
-import { DynamicIcon, IconName } from "lucide-react/dynamic";
 
 export function IconPickerExample() {
   const [icon, setIcon] = useState<IconName | null>(null);
@@ -36,7 +36,7 @@ export function IconPickerExample() {
       <Button>
         {icon ? (
           <>
-            <DynamicIcon name={icon} /> {icon}
+            <Icon name={icon} /> {icon}
           </>
         ) : (
           "Pick Icon"

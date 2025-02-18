@@ -29,11 +29,10 @@ const CopyButton = ({ code }: { code: string }) => {
 }
 
 export function ScriptCopy({ language, commandMap }: ScriptCopyProps) {
-  const [selectedPackage] = React.useState(Object.keys(commandMap)[0])
-  const currentCommand = commandMap[selectedPackage]
+  const [selectedPackage, setSelectedPackage] = React.useState(Object.keys(commandMap)[0])
 
   return (
-    <Tabs defaultValue={selectedPackage} className="w-full">
+    <Tabs defaultValue={selectedPackage} onValueChange={setSelectedPackage} className="w-full">
       <div className="flex items-center justify-between">
         <TabsList>
           {Object.keys(commandMap).map((pkg) => (
@@ -42,7 +41,7 @@ export function ScriptCopy({ language, commandMap }: ScriptCopyProps) {
             </TabsTrigger>
           ))}
         </TabsList>
-          <CopyButton code={currentCommand} />
+          <CopyButton code={commandMap[selectedPackage]} />
       </div>
       {
         Object.keys(commandMap).map((pkg) => (

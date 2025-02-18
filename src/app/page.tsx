@@ -14,7 +14,7 @@ export default function Home() {
 }`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+    <div className="min-h-screen bg-background dark:bg-background">
       <main className="max-w-4xl mx-auto px-4 py-20 space-y-4">
         <h1 className="text-2xl font-bold">Icon Picker</h1>
         <p className="text-sm text-muted-foreground">
