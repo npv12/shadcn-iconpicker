@@ -4,6 +4,9 @@ import { PreviewCode } from "@/components/preview-code";
 import { ScriptCopy } from "@/components/script-copy";
 import { IconPicker } from "../../registry/ui/icon-picker";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { Github } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   const iconPickerPreview = <IconPicker />;
@@ -16,7 +19,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background dark:bg-background">
       <main className="max-w-4xl mx-auto px-4 py-20 space-y-4">
-        <h1 className="text-2xl font-bold">Icon Picker</h1>
+        <div className="flex flex-row justify-between">
+          <h1 className="text-2xl font-bold">Icon Picker</h1>
+          <Link href="https://github.com/alan-crts/shadcn-iconpicker">
+          <Button variant="outline">
+              <Github className="w-4 h-4" />
+              View on GitHub
+          </Button>
+          </Link>
+        </div>
         <p className="text-sm text-muted-foreground">
           A simple icon picker component that allows you to pick an icon from a list of lucide icons.
         </p>
