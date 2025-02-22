@@ -9,22 +9,46 @@ import {
   
   const props = [
     {
-      prop: "onSelect",
-      type: "function (icon: IconName) => void",
+      prop: "value",
+      type: "IconName",
       default: "-",
-      description: "The function to call when the icon is selected.",
+      description: "The controlled value of the selected icon.",
+    },
+    {
+      prop: "defaultValue",
+      type: "IconName",
+      default: "-",
+      description: "The default value of the selected icon.",
+    },
+    {
+      prop: "onValueChange",
+      type: "(value: IconName) => void",
+      default: "-", 
+      description: "Callback invoked when an icon is selected.",
+    },
+    {
+      prop: "open",
+      type: "boolean",
+      default: "-",
+      description: "Controlled open state of the picker.",
+    },
+    {
+      prop: "defaultOpen",
+      type: "boolean", 
+      default: "false",
+      description: "Default open state of the picker.",
+    },
+    {
+      prop: "onOpenChange",
+      type: "(open: boolean) => void",
+      default: "-",
+      description: "Callback invoked when the open state changes.",
     },
     {
       prop: "children",
       type: "ReactNode",
       default: "-",
       description: "The trigger element to open the icon picker.",
-    },
-    {
-      prop: "iconsList",
-      type: `array of objects { icon: IconName, alias?: string[] }[]`,
-      default: "all lucide icons",
-      description: "The list of icons to display in the icon picker.",
     },
     {
       prop: "searchable",
@@ -38,6 +62,18 @@ import {
       default: "Search for an icon...",
       description: "The placeholder for the search input.",
     },
+    {
+      prop: "triggerPlaceholder",
+      type: "string",
+      default: "Select an icon",
+      description: "The text displayed on the default trigger button when no icon is selected.",
+    },
+    {
+      prop: "iconsList",
+      type: "IconList",
+      default: "all lucide icons",
+      description: "The list of icons to display in the picker.",
+    }
   ]
   
   export function IconsPickerProps() {

@@ -1,45 +1,72 @@
 "use client";
 
+import * as React from "react";
 import { useState, useMemo, useEffect } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import React from 'react';
 import { icons } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Icon } from "./icon";
 
-export type IconName = keyof typeof icons;
+type IconName = keyof typeof icons;
+type IconsList = { icon: IconName, alias?: string[] }[];
 
-const ICON_BUTTONS = Object.keys(icons).map((icon) => ({
+const ICON_BUTTONS: IconsList = Object.keys(icons).map((icon) => ({
   icon: icon as IconName,
+  alias: [] as string[]
 }));
 
-export function IconPicker({
-  onSelect,
+interface IconPickerProps extends Omit<React.ComponentPropsWithoutRef<typeof PopoverTrigger>, 'onSelect' | 'onOpenChange'> {
+  value?: IconName
+  defaultValue?: IconName
+  onValueChange?: (value: IconName) => void
+  open?: boolean
+  defaultOpen?: boolean
+  onOpenChange?: (open: boolean) => void
+  searchable?: boolean
+  searchPlaceholder?: string
+  triggerPlaceholder?: string
+  iconsList?: IconsList
+}
+
+const IconPicker = React.forwardRef<
+  React.ElementRef<typeof PopoverTrigger>,
+  IconPickerProps
+>(({
+  value,
+  defaultValue,
+  onValueChange,
+  open,
+  defaultOpen,
+  onOpenChange,
   children,
   searchable = true,
   searchPlaceholder = "Search for an icon...",
-  iconsList = ICON_BUTTONS
-}: { 
-  onSelect?: (icon: IconName) => void,
-  children?: React.ReactNode,
-  searchable?: boolean,
-  searchPlaceholder?: string,
-  iconsList?: { icon: IconName, alias?: string[] }[]
-}) {
-  const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [displayCount, setDisplayCount] = useState(36);
+  triggerPlaceholder = "Select an icon",
+  iconsList = ICON_BUTTONS,
+  ...props
+}, ref) => {
+  const [selectedIcon, setSelectedIcon] = useState<IconName | undefined>(defaultValue)
+  const [isOpen, setIsOpen] = useState(defaultOpen || false)
+
+  const handleValueChange = (icon: IconName) => {
+    if (value === undefined) {
+      setSelectedIcon(icon)
+    }
+    onValueChange?.(icon)
+  }
 
   const handleOpenChange = (newOpen: boolean) => {
-    setOpen(newOpen);
-    if (!newOpen) {
-      setDisplayCount(36);
-      setSearch("");
+    if (open === undefined) {
+      setIsOpen(newOpen)
     }
-  };
+    onOpenChange?.(newOpen)
+  }
+
+  const [search, setSearch] = useState("");
+  const [displayCount, setDisplayCount] = useState(36);
 
   const filteredIcons = useMemo(() => 
     search.trim() === "" 
@@ -68,11 +95,17 @@ export function IconPicker({
   };
 
   return (
-    <Popover open={open} onOpenChange={handleOpenChange} modal={true}>
-      <PopoverTrigger asChild>
+    <Popover open={open ?? isOpen} onOpenChange={handleOpenChange}>
+      <PopoverTrigger ref={ref} asChild {...props}>
         {children || (
           <Button variant="outline">
-            Select an icon
+            {(value || selectedIcon) ? (
+              <>
+                <Icon name={(value || selectedIcon)!} /> {value || selectedIcon}
+              </>
+            ) : (
+              triggerPlaceholder
+            )}
           </Button>
         )}
       </PopoverTrigger>
@@ -98,8 +131,8 @@ export function IconPicker({
                     "flex items-center justify-center"
                   )}
                   onClick={() => {
-                    onSelect?.(icon);
-                    setOpen(false);
+                    handleValueChange(icon);
+                    setIsOpen(false);
                     setDisplayCount(36);
                     setSearch("");
                   }}>
@@ -120,4 +153,7 @@ export function IconPicker({
       </PopoverContent>
     </Popover>
   );
-}
+});
+IconPicker.displayName = "IconPicker";
+
+export { IconPicker, type IconsList, type IconName };
