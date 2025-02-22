@@ -6,9 +6,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { icons } from 'lucide-react';
+import { icons, LucideProps, LucideIcon } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Icon } from "./icon";
 
 type IconName = keyof typeof icons;
 type IconsList = { icon: IconName, alias?: string[] }[];
@@ -32,7 +31,7 @@ interface IconPickerProps extends Omit<React.ComponentPropsWithoutRef<typeof Pop
 }
 
 const IconPicker = React.forwardRef<
-  React.ElementRef<typeof PopoverTrigger>,
+  React.ComponentRef<typeof PopoverTrigger>,
   IconPickerProps
 >(({
   value,
@@ -156,4 +155,17 @@ const IconPicker = React.forwardRef<
 });
 IconPicker.displayName = "IconPicker";
 
-export { IconPicker, type IconsList, type IconName };
+interface IconProps extends Omit<LucideProps, 'ref'> {
+  name: IconName;
+}
+
+const Icon = React.forwardRef<
+  React.ComponentRef<LucideIcon>,
+  IconProps
+>(({ name, ...props }, ref) => {
+  const LucideIcon = icons[name];
+  return <LucideIcon ref={ref} {...props} />;
+});
+Icon.displayName = "Icon";
+
+export { IconPicker, Icon, type IconsList, type IconName };

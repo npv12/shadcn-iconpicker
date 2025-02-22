@@ -1,35 +1,52 @@
 {
-    "$schema": "https://ui.shadcn.com/schema/registry.json",
-    "name": "acme",
-    "homepage": "https://acme.com",
-    "items": [
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "acme",
+  "homepage": "https://acme.com",
+  "items": [
+    {
+      "name": "icon-picker",
+      "type": "registry:ui",
+      "title": "Icon Picker",
+      "description": "An icon picker component with lucide icons.",
+      "author": "alan-crts",
+      "files": [
         {
-            "name": "icon-picker",
-            "type": "registry:ui",
-            "title": "Icon Picker",
-            "description": "An icon picker component with lucide icons.",
-            "author": "alan-crts",
-            "files": [
-              {
-                "path": "registry/ui/icon-picker.tsx",
-                "type": "registry:component",
-                "target": "components/ui/icon-picker.tsx"
-              },
-              {
-                "path": "registry/ui/icon.tsx",
-                "type": "registry:component",
-                "target": "components/ui/icon.tsx"
-              }
-            ],
-            "dependencies": [
-                "lucide-react"
-            ],
-            "registryDependencies": [
-                "button",
-                "input",
-                "popover",
-                "tooltip"
-            ]
-          }
-    ]
-  }
+          "path": "registry/ui/icon-picker.tsx",
+          "type": "registry:component",
+          "target": "components/ui/icon-picker.tsx"
+        },
+        {
+          "path": "registry/ui/icon.tsx",
+          "type": "registry:component",
+          "target": "components/ui/icon.tsx"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "popover",
+        "tooltip"
+      ]
+    },
+    {
+      "name": "icon-picker-example",
+      "type": "registry:ui",
+      "title": "Icon Picker Example",
+      "description": "An example of the icon picker component.",
+      "author": "alan-crts",
+      "registryDependencies": [
+        "https://icon-picker.alan-courtois.fr/r/icon-picker"
+      ],
+      "files": [
+        {
+          "path": "registry/icon-picker-example.tsx",
+          "type": "registry:component",
+          "target": "components/icon-picker-example.tsx"
+        }
+      ]
+    }
+  ]
+}

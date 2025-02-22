@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IconPicker, IconName } from "../../../registry/ui/icon-picker";
-import { Icon } from "../../../registry/ui/icon";
+import { IconPicker, IconName, Icon } from "../../../registry/ui/icon-picker";
 import { PreviewCode } from "../preview-code";
 
 const IconPickerExample = () => {
@@ -14,7 +13,7 @@ const IconPickerExample = () => {
         Selected icon: {
         icon ? (
           <>
-            <Icon name={icon} /> {icon}
+            <Icon name={icon}/> {icon}
           </>
         ) : (
           "None"

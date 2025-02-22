@@ -3,6 +3,7 @@ import { PreviewCode } from "./preview-code";
 import { Button } from "./ui/button";
 import { IconPicker } from "../../registry/ui/icon-picker";
 import Link from "next/link";
+
 export function Introduction() {
     const iconPickerPreview = <IconPicker />;
     const iconPickerCode = `import { IconPicker } from "@/components/ui/iconPicker";
@@ -30,7 +31,7 @@ export function Introduction() {
         preview={iconPickerPreview}
         code={iconPickerCode}
         language="tsx"
-        v0Url={process.env.NEXT_PUBLIC_REGISTRY_URL}
+        v0Url={"https://icon-picker.alan-courtois.fr/r/icon-picker-example"}
       />
     </div>
   );
