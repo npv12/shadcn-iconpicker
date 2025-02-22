@@ -15,61 +15,49 @@ A sleek and customizable icon picker component for React, built with shadcn/ui a
 
 ### Using npm
 ```shell
-npx shadcn@latest add icon-picker
+npx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 ```
 
 ### Using pnpm
 ```shell
-pnpm dlx shadcn@latest add icon-picker
+pnpm dlx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 ```
 
 ### Using Yarn
 ```shell
-yarn dlx shadcn@latest add icon-picker
+yarn dlx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 ```
 
 ### Using Bun
 ```shell
-bunx shadcn@latest add icon-picker
+bunx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 ```
 
 ## Usage
 
 ```tsx
-"use client";
-
-import { useState } from "react";
-import { IconName, IconPicker } from "@/components/ui/icon-picker";
-import { Icon } from "@/components/ui/icon";
-import { Button } from "@/components/ui/button";
-
-export function IconPickerExample() {
-  const [icon, setIcon] = useState<IconName | null>(null);
-  return (
-    <IconPicker onSelect={(icon) => setIcon(icon)}>
-      <Button>
-        {icon ? (
-          <>
-            <Icon name={icon} /> {icon}
-          </>
-        ) : (
-          "Pick Icon"
-        )}
-      </Button>
-    </IconPicker>
-  );
-}`;
+import { IconPicker } from "@/components/ui/iconPicker";
+  
+export default function Home() {
+  return <IconPicker />;
+}
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `onSelect` | `(icon: IconName) => void` | - | Function called when an icon is selected |
-| `children` | `ReactNode` | - | Trigger element to open the picker |
-| `iconsList` | `{ icon: IconName, alias?: string[] }[]` | all Lucide icons | List of icons to display |
-| `searchable` | `boolean` | `true` | Enable/disable search functionality |
-| `searchPlaceholder` | `string` | "Search for an icon..." | Search input placeholder |
+| `value` | `IconName` | - | The controlled value of the selected icon |
+| `defaultValue` | `IconName` | - | The default value of the selected icon |
+| `onValueChange` | `(value: IconName) => void` | - | Callback invoked when an icon is selected |
+| `open` | `boolean` | - | Controlled open state of the picker |
+| `defaultOpen` | `boolean` | `false` | Default open state of the picker |
+| `onOpenChange` | `(open: boolean) => void` | - | Callback invoked when the open state changes |
+| `children` | `ReactNode` | - | The trigger element to open the icon picker |
+| `searchable` | `boolean` | `true` | Whether the icon picker is searchable |
+| `searchPlaceholder` | `string` | "Search for an icon..." | The placeholder for the search input |
+| `triggerPlaceholder` | `string` | "Select an icon" | The text displayed on the default trigger button when no icon is selected |
+| `iconsList` | `IconList` | all lucide icons | The list of icons to display in the picker |
 
 ## Development
 
