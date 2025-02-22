@@ -14,16 +14,24 @@ A sleek and customizable icon picker component for React, built with shadcn/ui a
 ## Installation
 
 ### Using npm
-```npx shadcn@latest add icon-picker```
+```shell
+npx shadcn@latest add icon-picker
+```
 
 ### Using pnpm
-```pnpm dlx shadcn@latest add icon-picker```
+```shell
+pnpm dlx shadcn@latest add icon-picker
+```
 
 ### Using Yarn
-```yarn dlx shadcn@latest add icon-picker```
+```shell
+yarn dlx shadcn@latest add icon-picker
+```
 
 ### Using Bun
-```bunx shadcn@latest add icon-picker```
+```shell
+bunx shadcn@latest add icon-picker
+```
 
 ## Usage
 
@@ -66,13 +74,19 @@ export function IconPickerExample() {
 ## Development
 
 ### Clone the repository
-```git clone https://github.com/alan-crts/shadcn-iconpicker.git```
+```shell
+git clone https://github.com/alan-crts/shadcn-iconpicker.git
+```
 
 ### Install dependencies
-```npm install```
+```shell
+npm install
+```
 
 ### Start development server
-```npm run dev```
+```shell
+npm run dev
+```
 
 ## License
 
