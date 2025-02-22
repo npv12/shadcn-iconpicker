@@ -14,11 +14,6 @@
           "path": "registry/ui/icon-picker.tsx",
           "type": "registry:component",
           "target": "components/ui/icon-picker.tsx"
-        },
-        {
-          "path": "registry/ui/icon.tsx",
-          "type": "registry:component",
-          "target": "components/ui/icon.tsx"
         }
       ],
       "dependencies": [
