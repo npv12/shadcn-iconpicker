@@ -25,7 +25,7 @@ pnpm dlx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 
 ### Using Yarn
 ```shell
-yarn dlx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
+npx shadcn@latest add "https://icon-picker.alan-courtois.fr/r/icon-picker"
 ```
 
 ### Using Bun
