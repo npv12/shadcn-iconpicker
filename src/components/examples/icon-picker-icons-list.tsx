@@ -76,7 +76,7 @@ export function IconPickerExample() {
         }
     ];
 
-    return <IconPicker iconsList={icons} />;
+    return <IconPicker iconsList={icons} categorized={false} />;
 }`;
 
   return (
