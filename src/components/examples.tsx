@@ -14,9 +14,9 @@ export function Examples() {
         <IconPickerControlled />
         <h3 className="text-lg font-bold">Default</h3>
         <IconPickerDefault />
-        <h3 className="text-lg font-bold">Custom Trigger</h3>
+        <h3 className="text-lg font-bold">Custom trigger</h3>
         <IconPickerCustomTrigger />
-        <h3 className="text-lg font-bold">Custom Icons List</h3>
+        <h3 className="text-lg font-bold">Custom icons list without categories</h3>
         <IconPickerIconsList />
       </div>
   );

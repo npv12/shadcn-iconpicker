@@ -14,16 +14,25 @@
           "path": "registry/ui/icon-picker.tsx",
           "type": "registry:component",
           "target": "components/ui/icon-picker.tsx"
+        },
+        {
+          "path": "registry/ui/icons-data.ts",
+          "type": "registry:component",
+          "target": "components/ui/icons-data.ts"
         }
       ],
       "dependencies": [
-        "lucide-react"
+        "lucide-react@^0.471.0",
+        "@tanstack/react-virtual",
+        "fuse.js",
+        "usehooks-ts"
       ],
       "registryDependencies": [
         "button",
         "input",
         "popover",
-        "tooltip"
+        "tooltip",
+        "skeleton"
       ]
     },
     {

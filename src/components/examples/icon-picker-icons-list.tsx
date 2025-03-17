@@ -1,35 +1,41 @@
-import { IconsList, IconPicker } from "../../../registry/ui/icon-picker";
+import { IconData, IconPicker } from "../../../registry/ui/icon-picker";
 import { PreviewCode } from "../preview-code";
 
 export function IconPickerExample() {
-    const icons: IconsList = [
+    const icons: IconData[] = [
         {
-            icon: "Github",
-            alias: ["git", "social"]
+            name: "github",
+            tags: ["git", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Twitter",
-            alias: ["X", "social"]
+            name: "twitter",
+            tags: ["X", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Facebook",
-            alias: ["meta", "fb", "social"]
+            name: "facebook",
+            tags: ["meta", "fb", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Instagram",
-            alias: ["meta", "ig", "social"]
+            name: "instagram",
+            tags: ["meta", "ig", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Linkedin",
-            alias: ["linkedin", "social"]
+            name: "linkedin",
+            tags: ["linkedin", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Youtube",
-            alias: ["yt", "social"]
+            name: "youtube",
+            tags: ["yt", "social"],
+            categories: ["social"]
         }
     ];
 
-  return <IconPicker iconsList={icons} />;
+  return <IconPicker iconsList={icons} categorized={false} />;
 }
 
 export function IconPickerIconsList() {
@@ -39,28 +45,34 @@ import { IconPicker, IconList } from "@/components/ui/icon-picker";
 export function IconPickerExample() {
     const icons: IconList = [
         {
-            icon: "Github",
-            alias: ["git", "social"]
+            name: "github",
+            tags: ["git", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Twitter",
-            alias: ["X", "social"]
+            name: "twitter",
+            tags: ["X", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Facebook",
-            alias: ["meta", "fb", "social"]
+            name: "facebook",
+            tags: ["meta", "fb", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Instagram",
-            alias: ["meta", "ig", "social"]
+            name: "instagram",
+            tags: ["meta", "ig", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Linkedin",
-            alias: ["linkedin", "social"]
+            name: "linkedin",
+            tags: ["linkedin", "social"],
+            categories: ["social"]
         },
         {
-            icon: "Youtube",
-            alias: ["yt", "social"]
+            name: "youtube",
+            tags: ["yt", "social"],
+            categories: ["social"]
         }
     ];
 

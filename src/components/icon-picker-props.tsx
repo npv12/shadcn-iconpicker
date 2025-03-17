@@ -73,6 +73,12 @@ import {
       type: "IconList",
       default: "all lucide icons",
       description: "The list of icons to display in the picker.",
+    },
+    {
+      prop: "categorized",
+      type: "boolean",
+      default: "true",
+      description: "Display icons in categories and add categories buttons to scroll to the desired category.",
     }
   ]
   
