@@ -58,6 +58,7 @@ export default function Home() {
 | `searchPlaceholder` | `string` | "Search for an icon..." | The placeholder for the search input |
 | `triggerPlaceholder` | `string` | "Select an icon" | The text displayed on the default trigger button when no icon is selected |
 | `iconsList` | `IconList` | all lucide icons | The list of icons to display in the picker |
+| `categorized` | `boolean` | `true` | Display icons in categories and add categories buttons to scroll to the desired category. |
 
 ## Development
 
