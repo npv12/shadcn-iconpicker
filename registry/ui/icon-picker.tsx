@@ -200,6 +200,7 @@ const IconPicker = React.forwardRef<
     count: virtualItems.length,
     getScrollElement: () => parentRef.current,
     estimateSize: (index) => virtualItems[index].type === 'category' ? 25 : 40,
+    paddingEnd: 2,
     gap: 10,
     overscan: 5,
   });
@@ -212,6 +213,7 @@ const IconPicker = React.forwardRef<
   }, [value, onValueChange]);
 
   const handleOpenChange = useCallback((newOpen: boolean) => {
+    setSearch("");
     if (open === undefined) {
       setIsOpen(newOpen)
     }
@@ -222,6 +224,7 @@ const IconPicker = React.forwardRef<
     if (newOpen) {
       setTimeout(() => {
         virtualizer.measure();
+        setIsLoading(false);
       }, 1);
     }
   }, [open, onOpenChange, virtualizer]);
