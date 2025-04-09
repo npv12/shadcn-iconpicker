@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react"
-import ogImage from "@/public/og-image.png";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shadcn Icon Picker",
     description: "A modern, accessible, and customizable icon picker component built with Shadcn UI, Lucide React and Tanstack Virtual.",
-    images: [ogImage.src],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
