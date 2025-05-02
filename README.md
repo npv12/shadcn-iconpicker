@@ -2,6 +2,10 @@
 
 A sleek and customizable icon picker component for React, built with shadcn/ui and Lucide Icons.
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/alan-crts/shadcn-iconpicker/refs/heads/main/public/preview.gif" width="600" />
+</div>
+
 ## Features
 
 - 🎨 Modern and responsive UI
