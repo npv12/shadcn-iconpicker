@@ -29,6 +29,7 @@ interface IconPickerProps extends Omit<React.ComponentPropsWithoutRef<typeof Pop
   triggerPlaceholder?: string
   iconsList?: IconData[]
   categorized?: boolean
+  modal?: boolean
 }
 
 const IconRenderer = React.memo(({ name }: { name: IconName }) => {
@@ -94,6 +95,7 @@ const IconPicker = React.forwardRef<
   triggerPlaceholder = "Select an icon",
   iconsList,
   categorized = true,
+  modal = false,
   ...props
 }, ref) => {
   const [selectedIcon, setSelectedIcon] = useState<IconName | undefined>(defaultValue)
@@ -378,7 +380,7 @@ const IconPicker = React.forwardRef<
   }, [isPopoverVisible, virtualizer]);
 
   return (
-    <Popover open={open ?? isOpen} onOpenChange={handleOpenChange}>
+    <Popover open={open ?? isOpen} onOpenChange={handleOpenChange} modal={modal}>
       <PopoverTrigger ref={ref} asChild {...props}>
         {children || (
           <Button variant="outline">

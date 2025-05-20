@@ -79,6 +79,12 @@ import {
       type: "boolean",
       default: "true",
       description: "Display icons in categories and add categories buttons to scroll to the desired category.",
+    },
+    {
+      prop: "modal",
+      type: "boolean",
+      default: "false",
+      description: "Whether the icon picker is being rendered in a modal.",
     }
   ]
   
